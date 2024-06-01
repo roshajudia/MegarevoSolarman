@@ -1,0 +1,939 @@
+requests:
+ - #Alarm, PV, Bat, BMS
+   start: 0x3100
+   end: 0x314E
+   mb_functioncode: 0x03
+
+ - #Analog
+   start: 0x3150
+   end: 0x3181
+   mb_functioncode: 0x03
+
+ - #Inverter Info
+   start: 0x3190
+   end: 0x319C
+   mb_functioncode: 0x03
+
+ - #OTHER ANALOG #PV Power
+   start: 0x16A2
+   end: 0x16A2
+   mb_functioncode: 0x03
+
+ - #Other Power
+   start: 0x2282
+   end: 0x228B
+   mb_functioncode: 0x03
+
+parameters:
+ - group: solar
+   items: 
+    - #DONE
+      name: "PV1 Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3132]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "PV2 Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3135]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "PV1 Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3130]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "PV2 Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3133]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "PV1 Current"
+      class: "current"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3131]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "PV2 Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3134]
+      icon: 'mdi:solar-power'
+      
+ - group: Battery
+   items: 
+    - #NEEDXXXXXXXXXXXXXXXXXXXXXXXXXXx
+      name: "XBattery Status WRONG Reg"
+      class: ""
+      state_class: "measurement"
+      uom: ""
+      scale: 1
+      rule: 1
+      registers: [0x3603]
+      isstr: true
+      lookup: 
+      -  key: 0
+         value: "Cancel"
+      -  key: 1
+         value: "Charging"
+      -  key: 2
+         value: "Discharging"
+      -  key: 2
+         value: "Stand-by"
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "Battery Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x314A]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "Battery Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3140]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "Battery SOC"
+      class: "battery"
+      state_class: "measurement"
+      uom: "%"
+      scale: .1
+      rule: 1
+      registers: [0x3145]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "Battery Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 2
+      registers: [0x3141]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "Battery Temperature"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 0.1
+      rule: 1
+      registers: [0x3146]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BAT Charge Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3147]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BAT Charge Current Limit"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3148]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BAT DisCharge Current Limit"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3149]
+      icon: 'mdi:battery'
+
+    - # BMS ###############################
+      #DONE
+      name: "BMS Bat Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x313E]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BMS Bat Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 2
+      registers: [0x313F]
+      icon: 'mdi:battery'
+      
+    - #DONE
+      name: "BMS BAT Cell MaxVoltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x314B]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BMS BAT Cell MinVoltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x314C]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "BMS BAT Cell MaxTemperature"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 0.1
+      rule: 1
+      registers: [0x314D]
+      icon: 'mdi:battery'
+      
+    - #DONE
+      name: "BMS BAT Cell MinTemperature"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 0.1
+      rule: 1
+      registers: [0x314E]
+      icon: 'mdi:battery'      
+
+ - group: Grid
+   items: 
+    - name: "Grid_A Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3110]
+      icon: 'mdi:transmission-tower'
+
+    - name: "Grid_B Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3113]
+      icon: 'mdi:transmission-tower'
+
+    - #DONE
+      name: "Grid_A Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 2
+      registers: [0x3111]
+      icon: 'mdi:transmission-tower'
+      
+    - #DONE
+      name: "Grid_B Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 2
+      registers: [0x3114]
+      icon: 'mdi:transmission-tower'
+
+    - name: "Grid_A Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x3112]
+      icon: 'mdi:transmission-tower'
+
+    - name: "Grid_B Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x3115]
+      icon: 'mdi:transmission-tower'
+
+    - name: "Grid_C Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3116]
+      icon: 'mdi:transmission-tower'
+
+    - #DONE
+      name: "Grid_C Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 2
+      registers: [0x3117]
+      icon: 'mdi:transmission-tower'
+      
+    - name: "Grid_C Power"
+      class: "power"
+      state_class: "measurement"
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x3118]
+      icon: 'mdi:transmission-tower'
+
+    - name: "Grid Frequency"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "Hz"
+      scale: 0.01
+      rule: 1
+      registers: [0x3119]
+      icon: 'mdi:transmission-tower'
+      
+    - #DONE
+      name: "INV Temperature Grid"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 1
+      rule: 2
+      registers: [0x311A]
+      icon: 'mdi:transmission-tower'
+
+    - #DONE
+      name: "INV inside Temperature"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 1
+      rule: 2
+      registers: [0x311B]
+      icon: 'mdi:transmission-tower'
+
+
+ - group: Upload
+   items: 
+    - name: "Load_A Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3120]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - #DONE
+      name: "Load_A Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3121]
+      icon: 'mdi:lightning-bolt-outline'
+      
+    - name: "Load_A Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3122]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - name: "Load_A Rate"
+      class: "rate"
+      state_class: "measurement"      
+      uom: "R"
+      scale: 1
+      rule: 1
+      registers: [0x3123]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - name: "Load_B Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3124]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - #DONE
+      name: "Load_B Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3125]
+      icon: 'mdi:lightning-bolt-outline'
+      
+    - name: "Load_B Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3126]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - name: "Load_B Rate"
+      class: "rate"
+      state_class: "measurement"      
+      uom: "R"
+      scale: 1
+      rule: 1
+      registers: [0x3127]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - name: "Load_C Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3128]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - #DONE
+      name: "Load_C Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3129]
+      icon: 'mdi:lightning-bolt-outline'
+      
+    - name: "Load_C Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x312A]
+      icon: 'mdi:lightning-bolt-outline'
+
+    - name: "Load_C Rate"
+      class: "rate"
+      state_class: "measurement"      
+      uom: "R"
+      scale: 1
+      rule: 1
+      registers: [0x312B]
+      icon: 'mdi:lightning-bolt-outline'
+
+
+ - group: Inverter
+   items: 
+    - name: "INV_A Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3190]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "INV_A Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3191]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - name: "INV_A Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3192]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "INV_B Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3193]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "INV_B Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3194]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - name: "INV_B Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3195]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "INV_C Voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 1
+      rule: 1
+      registers: [0x3196]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "INV_C Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x3197]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - name: "INV_C Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 1
+      registers: [0x3198]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "INV_A Frequency"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "Hz"
+      scale: 0.01
+      rule: 1
+      registers: [0x3199]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "INV_B Frequency"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "Hz"
+      scale: 0.01
+      rule: 1
+      registers: [0x319A]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "INV_C Frequency"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "Hz"
+      scale: 0.01
+      rule: 1
+      registers: [0x319B]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - #DONE
+      name: "INV Leak Current"
+      class: "current"
+      state_class: "measurement"
+      uom: "A"
+      scale: 0.1
+      rule: 1
+      registers: [0x319C]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "INV S Bus voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3150]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "INV N Bus voltage"
+      class: "voltage"
+      state_class: "measurement"
+      uom: "V"
+      scale: 0.1
+      rule: 1
+      registers: [0x3151]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "INV DCDC Temperature"
+      class: "temperature"
+      state_class: "measurement"
+      uom: "°C"
+      scale: 1
+      rule: 1
+      registers: [0x3152]
+      icon: 'mdi:battery'
+
+    - #DONE
+      name: "ENERGY Today PV"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 1
+      registers: [0x3153]
+      icon: 'mdi:solar-power'
+
+    - #DONE
+      name: "ENERGY Today To Grid"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3155]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Today Load"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3157]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Month PV"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3159]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Month To Grid"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x315B]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Month Load"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x315D]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Year PV"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x315F]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Year To Grid"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3161]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Year Load"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3163]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - #DONE
+      name: "ENERGY Total PV"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3165]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Total To Grid"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3167]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Total Load"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3169]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Today Purchased"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x316B]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Today Charging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x316D]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Today Discharging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x316F]
+      icon: 'mdi:home-lightning-bolt'      
+
+    - #DONE
+      name: "ENERGY Month Purchased"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3171]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Month Charging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3173]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Month Discharging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3175]
+      icon: 'mdi:home-lightning-bolt'      
+
+    - #DONE
+      name: "ENERGY Year Purchased"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3177]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Year Charging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3179]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Year Discharging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x317B]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - #DONE
+      name: "ENERGY Total Purchased"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x317D]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Total Charging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x317F]
+      icon: 'mdi:home-lightning-bolt'
+
+    - #DONE
+      name: "ENERGY Total Discharging"
+      class: "energy"
+      state_class: "measurement"
+      uom: "kWh"
+      scale: 0.001
+      rule: 3
+      registers: [0x3181]
+      icon: 'mdi:home-lightning-bolt'      
+
+    - ##########################################
+      #Other Analog
+      name: "Other PV Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 4
+      registers: [0x16A2]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "Other Battery Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x2283]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "Other Grid Reactive Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x2287]
+      icon: 'mdi:home-lightning-bolt'
+
+    - name: "Other Grid Reactive Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x2289]
+      icon: 'mdi:home-lightning-bolt'
+      
+    - name: "Other Load Reactive Power"
+      class: "power"
+      state_class: "measurement"      
+      uom: "W"
+      scale: 1
+      rule: 2
+      registers: [0x228B]
+      icon: 'mdi:home-lightning-bolt'
+
+ - group: Alert
+   items: 
+    - name: "Alert Orig"
+      class: ""
+      state_class: ""      
+      uom: ""
+      scale: 1
+      rule: 6
+      registers: [0x0065,0x0066,0x0067,0x0068,0x0069,0x006A]
+
+    - name: "Alert Test"
+      class: ""
+      state_class: ""      
+      uom: ""
+      scale: 1
+      rule: 1
+      registers: [0x3100]
+      
